@@ -1,0 +1,19 @@
+{
+  "name": "challenge",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "dev:frontend": "yarn workspace frontend run dev",
+    "dev:backend": "yarn workspace backend run dev",
+    "start": "yarn run build && yarn workspace backend run start",
+    "build": "yarn workspace backend run build && yarn workspace frontend run build"
+  },
+  "license": "MIT"
+}

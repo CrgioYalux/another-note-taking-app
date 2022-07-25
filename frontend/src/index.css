@@ -1,18 +1,5 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 *,
 *::before,
@@ -22,16 +9,69 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* VARS */
+
+  /* FONTS */
+  --primary-font: 'Montserrat', sans-serif;
+  --secondary-color: 'Roboto', sans-serif;
+
+  /* COLORS */
+  --brand-hue: 210;
+
+  --brand-color: hsl(var(--brand-hue), 50%, 50%);
+
+  --brand-color-dark: hsl(var(--brand-hue), 50%, 40%);
+  --brand-color-darker: hsl(var(--brand-hue), 50%, 30%);
+  --brand-color-darkest: hsl(var(--brand-hue), 50%, 20%);
+
+  --brand-color-light: hsl(var(--brand-hue), 50%, 60%);
+  --brand-color-lighter: hsl(var(--brand-hue), 50%, 70%);
+  --brand-color-lightest: hsl(var(--brand-hue), 50%, 80%);
+  
+  /* COLOR SCHEME */
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color-opacity-full: hsl(0, 0%, 0%);
+    --primary-color-opacity-high: hsl(0, 0%, 15%);
+    --primary-color-opacity-medium: hsl(0, 0%, 30%);
+    --primary-color-opacity-low: hsl(0, 0%, 45%);
+    --secondary-color-opacity-full: hsl(0, 0%, 100%);
+    --secondary-color-opacity-high: hsl(0, 0%, 85%);
+    --secondary-color-opacity-medium: hsl(0, 0%, 70%);
+    --secondary-color-opacity-low: hsl(0, 0%, 55%);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color-opacity-full: hsl(0, 0%, 100%);
+    --primary-color-opacity-high: hsl(0, 0%, 85%);
+    --primary-color-opacity-medium: hsl(0, 0%, 70%);
+    --primary-color-opacity-low: hsl(0, 0%, 55%);
+    --secondary-color-opacity-full: hsl(0, 0%, 0%);
+    --secondary-color-opacity-high: hsl(0, 0%, 15%);
+    --secondary-color-opacity-medium: hsl(0, 0%, 30%);
+    --secondary-color-opacity-low: hsl(0, 0%, 45%);
+  }
+}
+
 body {
   min-height: 100vh;
   width: 100%;
   display: grid;
   place-items: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+  background-color: var(--primary-color-opacity-full);
+  color: var(--secondary-color-opacity-medium);
+  background-color: var(--brand-color-darkest);
 }

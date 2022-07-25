@@ -39,6 +39,16 @@
   -webkit-text-size-adjust: 100%;
 }
 
+:root, :root.light {
+  --primary-color-opacity-full: hsl(0, 0%, 100%);
+  --primary-color-opacity-high: hsl(0, 0%, 85%);
+  --primary-color-opacity-medium: hsl(0, 0%, 70%);
+  --primary-color-opacity-low: hsl(0, 0%, 55%);
+  --secondary-color-opacity-full: hsl(0, 0%, 0%);
+  --secondary-color-opacity-high: hsl(0, 0%, 15%);
+  --secondary-color-opacity-medium: hsl(0, 0%, 30%);
+  --secondary-color-opacity-low: hsl(0, 0%, 45%);
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -53,18 +63,17 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color-opacity-full: hsl(0, 0%, 100%);
-    --primary-color-opacity-high: hsl(0, 0%, 85%);
-    --primary-color-opacity-medium: hsl(0, 0%, 70%);
-    --primary-color-opacity-low: hsl(0, 0%, 55%);
-    --secondary-color-opacity-full: hsl(0, 0%, 0%);
-    --secondary-color-opacity-high: hsl(0, 0%, 15%);
-    --secondary-color-opacity-medium: hsl(0, 0%, 30%);
-    --secondary-color-opacity-low: hsl(0, 0%, 45%);
-  }
+:root.dark {
+  --primary-color-opacity-full: hsl(0, 0%, 0%);
+  --primary-color-opacity-high: hsl(0, 0%, 15%);
+  --primary-color-opacity-medium: hsl(0, 0%, 30%);
+  --primary-color-opacity-low: hsl(0, 0%, 45%);
+  --secondary-color-opacity-full: hsl(0, 0%, 100%);
+  --secondary-color-opacity-high: hsl(0, 0%, 85%);
+  --secondary-color-opacity-medium: hsl(0, 0%, 70%);
+  --secondary-color-opacity-low: hsl(0, 0%, 55%);
 }
+
 
 body {
   min-height: 100vh;
@@ -73,5 +82,4 @@ body {
   place-items: center;
   background-color: var(--primary-color-opacity-full);
   color: var(--secondary-color-opacity-medium);
-  background-color: var(--brand-color-darkest);
 }

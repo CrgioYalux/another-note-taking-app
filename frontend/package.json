@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:standalone": "cross-env EXEC_MODE=standalone vite",
+    "dev:dependent": "cross-env EXEC_MODE=dependent vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

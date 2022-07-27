@@ -8,3 +8,9 @@ export interface Note {
 	archived: boolean;
 };
 
+export enum View {
+  MyNotes = 'My Notes',
+  ArchivedNotes = 'Archived Notes',
+  DeletedNotes = 'Deleted Notes',
+  Login = 'Login'
+};

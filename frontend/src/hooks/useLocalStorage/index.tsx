@@ -1,50 +1,79 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 export enum LocalStorageOperationType {
   GetItem = 0,
   SetItem,
-  RemoveItem,
-  Clear,
+  RemoveItem
 };
 
+export interface LocalStorageOperation {
+  GetItem: (key: string) => void; 
+  SetItem: (key: string, value: string) => void;
+  RemoveItem: (key: string) => void;
+};
 interface LocalStorageAction {
   type: LocalStorageOperationType;
   key?: string;
   value?: string;
 };
 
-type LocalStorageState<T> = T;
+type LocalStorageState<T> = T | null;
 
-const reducer = <T,>(state: LocalStorageState<T>, {type, key = "", value = ""}: LocalStorageAction) => {
-  switch(type) {
+const GetItemCase = <T,>(state: LocalStorageState<T>, action: LocalStorageAction): LocalStorageState<T> => {
+  const { key } = action;
+  if (key === undefined) return state;
+  const item = window.localStorage.getItem(key);
+  if (item === null) {
+    window.localStorage.setItem(key, JSON.stringify(state));
+    return state;
+  };
+  try {
+    const parse = JSON.parse(item);
+    return parse;
+  }
+  catch (error) {
+    console.error(error);
+    return null;
+  };
+};
+
+const SetItemCase = <T,>(state: LocalStorageState<T>, action: LocalStorageAction): LocalStorageState<T> => {
+  const { key, value } = action;
+  if (key === undefined || value === undefined) return state;
+  try {
+    window.localStorage.setItem(key, value);
+    const parse = JSON.parse(value);
+    return parse;
+  }
+  catch (error) {
+    console.error(error);
+    return state;
+  }
+};
+
+const RemoveItemCase = <T,>(state: LocalStorageState<T>, action: LocalStorageAction): LocalStorageState<T> => {
+  const { key } = action;
+  if (key === undefined) return state;
+  window.localStorage.removeItem(key);
+  return null;
+};
+
+const reducer = <T,>(state: T, action: LocalStorageAction) => {
+  switch(action.type) {
     case LocalStorageOperationType.GetItem:
-      if (!key) return state;
-      return JSON.parse(window.localStorage.getItem(key) ?? "");
+      return GetItemCase(state, action);
     case LocalStorageOperationType.SetItem:
-      if (!key && !value) return state;
-      window.localStorage.setItem(key, value);
-      return JSON.parse(window.localStorage.getItem(key) ?? "");
+      return SetItemCase(state, action);
     case LocalStorageOperationType.RemoveItem:
-      if (!key) return state;
-      window.localStorage.removeItem(key);
-      return JSON.parse(window.localStorage.getItem(key) ?? "");
-    case LocalStorageOperationType.Clear:
-      return null;
+      return RemoveItemCase(state, action);
     default:
       return state;
   }
 };
 
-interface LocalStorageOperations {
-  GetItem: (key: string) => void; 
-  SetItem: (key: string, value: string) => void;
-  RemoveItem: (key: string) => void;
-  Clear: () => void;
-};
-
-interface useLocalStorageReturns<T> {
+export interface useLocalStorageReturns<T> {
   state: LocalStorageState<T>;
-  operations: LocalStorageOperations;
+  operation: LocalStorageOperation;
 };
 
 type Reducer<S, A> = (state: S, action: A) => S;
@@ -64,17 +93,12 @@ export const useLocalStorage = <T,>(initialState: T): useLocalStorageReturns<T> 
     dispatch({type: LocalStorageOperationType.RemoveItem, key});
   };
 
-  const Clear = () => {
-    dispatch({type: LocalStorageOperationType.Clear});
-  };
-
   return {
     state,
-    operations: {
+    operation: {
       GetItem,
       SetItem,
-      RemoveItem,
-      Clear
+      RemoveItem
     }
   };
 };

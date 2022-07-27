@@ -1,7 +1,9 @@
 import { useExecMode, ExecMode } from "../../providers/ExecModeProvider";
 import { useStandAloneNoteDatabase } from './useStandAloneNoteDatabase';
-import { useDependentNoteDatabase } from './useDependentNoteDatabase';
 import { useStorage } from './useStorage';
+import { NoteDatabase } from './types';
+import { initialValue } from './utils';
+import type { Note } from '../../types';
 
 export const selectNoteDatabase = (): NoteDatabase => {
   const { execMode } = useExecMode();

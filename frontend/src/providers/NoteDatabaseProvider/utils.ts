@@ -1,4 +1,5 @@
-import { Note, NoteDatabase } from './types';
+import { NoteDatabase } from './types';
+import type { Note } from '../../types';
 
 export const getHighestNoteID = (notes: Note[]): number => {
   let ID = 0;

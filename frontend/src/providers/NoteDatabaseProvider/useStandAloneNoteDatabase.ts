@@ -1,8 +1,8 @@
 import { useEffect, useState, useMemo } from 'react';
-import type { NoteDatabase, NoteDatabaseOperation, Note, MutableNoteFields } from './types';
-import type { useLocalStorageReturns } from '../../hooks/useLocalStorage';
 import { getHighestNoteID } from './utils';
-
+import type { NoteDatabase, NoteDatabaseOperation, MutableNoteFields } from './types';
+import type { Note } from '../../types';
+import type { useLocalStorageReturns, LocalStorageOperation } from '../../hooks/useLocalStorage';
 
 interface StandAloneNoteDatabaseOperationProps {
 	setFound: React.Dispatch<React.SetStateAction<Note|null>>;

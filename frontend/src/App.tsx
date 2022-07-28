@@ -12,14 +12,16 @@ import { CreateEditNoteMode } from './components/CreateEditNote';
 
 function App() {
   const { currentView } = useView();
-  const { useMode } = useCreateEditMode();
+  const { endUse, startUseMode, using } = useCreateEditMode();
 
   return (
     <div className="App">
       <div className="AppMenu">
         <NavMenu />
         <ToggleThemeButton />
-        <button onClick={() => useMode(CreateEditNoteMode.Create, null)}>Create note</button>
+        <button className="CreateNote_bt" onClick={() => using ? endUse() : startUseMode(CreateEditNoteMode.Create, null)}>
+          {using ? "Exit Create/Edit mode" : "Create note"}
+        </button>
       </div>
       <h1>{currentView}</h1>
       {currentView === View.MyNotes && <MyNotesView />}

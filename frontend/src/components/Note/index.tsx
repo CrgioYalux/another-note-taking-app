@@ -2,7 +2,6 @@ import './Note.css';
 import { NoteGraphic } from './NoteGraphic';
 import { NoteState } from './types';
 import { NoteOperations } from './NoteOperations';
-import { useState } from 'react';
 import { useNoteDatabase } from '../../providers/NoteDatabaseProvider';
 import type { Note as NoteType } from '../types';
 import { useCreateEditMode } from '../../providers/CreateEditNoteProvider';
@@ -15,10 +14,10 @@ interface NoteProps {
 
 export const Note = ({note, noteState}: NoteProps) => {
   const { operation } = useNoteDatabase();
-  const { useMode } = useCreateEditMode();
+  const { startUseMode } = useCreateEditMode();
 
   const editNote = (note: NoteType) => {
-    useMode(CreateEditNoteMode.Edit, note);
+    startUseMode(CreateEditNoteMode.Edit, note);
   };
 
   const deleteNote = (note: NoteType) => {

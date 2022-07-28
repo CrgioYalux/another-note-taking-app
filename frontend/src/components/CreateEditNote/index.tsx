@@ -1,6 +1,6 @@
 import './CreateEditNote.css';
 import { Note } from '../../types';
-import { useNoteDatabase } from '../../providers/NoteDatabaseProvider';
+import { MutableNoteFields } from '../../providers/NoteDatabaseProvider/types';
 
 export enum CreateEditNoteMode {
   Create = 0,
@@ -10,7 +10,7 @@ export enum CreateEditNoteMode {
 interface CreateEditNoteProps {
   note: Note | null;
   mode: CreateEditNoteMode;
-  stopUseMode: () => void; 
+  stopUseMode: (mode: CreateEditNoteMode, fields: MutableNoteFields) => void; 
 };
 
 interface Form extends HTMLFormElement {
@@ -20,32 +20,38 @@ interface Form extends HTMLFormElement {
 }
 
 export const CreateEditNote = ({ note, mode, stopUseMode }: CreateEditNoteProps) => {
-  const { operation } = useNoteDatabase();
 
   const handleSubmit = (event: React.ChangeEvent<Form>) => {
     event.preventDefault();
-    operation.Create({
-      title: event.target.TitleInput.value,
-      categories: event.target.CategoriesInput.value.split(' '),
-      archived: event.target.ArchivedInput.checked,
-      author: 'me'
-    });
-    stopUseMode();
+    stopUseMode(
+      mode,
+      {
+        title: event.target.TitleInput.value,
+        archived: event.target.ArchivedInput.checked,
+        author: "me",
+        categories: event.target.CategoriesInput.value.split(' ')
+      });
   };
 
   return (
     <form onSubmit={handleSubmit} className="CreateEditNote">
-      <label htmlFor="TitleInput">
-        <strong>Title:</strong>
-        <input name="TitleInput" id="titleInput" type="text"  defaultValue={!note ? "" : note.title}/>
+      <label className="Input__default_class" htmlFor="TitleInput">
+        <div>
+          <strong>Title:</strong>
+          <input className="Input_field__default_class" name="TitleInput" id="titleInput" type="text"  defaultValue={!note ? "" : note.title}/>
+        </div>
       </label>
-      <label htmlFor="CategoriesInput">
-        <strong>Categories:</strong>
-        <input placeholder="e.g. category1 category2 ..." name="CategoriesInput" id="CategoriesInput" type="text" defaultValue={!note ? "" : note.categories.join(' ')} />
+      <label  className="Input__default_class" htmlFor="CategoriesInput">
+        <div>
+          <strong>Categories:</strong>
+          <input  className="Input_field__default_class"  placeholder="e.g. category1 category2 ..." name="CategoriesInput" id="CategoriesInput" type="text" defaultValue={!note ? "" : note.categories.join(' ')} />
+        </div>
       </label>
-      <label htmlFor="ArchivedInput">
-        <strong>Archived?</strong>
-        <input name="ArchivedInput" id="ArchivedInput" type="checkbox" defaultChecked={!note ? false : note.archived}/>
+      <label className="Input__default_class" htmlFor="ArchivedInput">
+        <div>
+          <strong>Archived?</strong>
+          <input className="Input_field__default_class" name="ArchivedInput" id="ArchivedInput" type="checkbox" defaultChecked={!note ? false : note.archived}/>
+        </div>
       </label>
       <button type="submit">{mode === CreateEditNoteMode.Create ? "Create" : "Edit"}</button>
     </form>

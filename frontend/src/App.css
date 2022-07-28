@@ -34,4 +34,14 @@
   margin-top: 40px;
 }
 
-
+.CreateNote_bt {
+  color: var(--secondary-color-opacity-full);
+  background-color: var(--primary-color-opacity-full);
+  border: 1px solid currentColor;
+  font-family: var(--primary-font);
+  border-radius: 99px;
+  font-size: .8rem;
+  padding: .2em .4em;
+  text-transform: capitalize;
+  cursor: pointer;
+}

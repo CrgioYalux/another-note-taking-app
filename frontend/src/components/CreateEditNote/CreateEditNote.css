@@ -1,14 +1,55 @@
 .CreateEditNote {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    width: 90vw;
-    height: 80vh;
-    background-color: var(--primary-color-opacity-high);
-    color: var(--secondary-color-opacity-full);
-    font-family: var(--primary-font);
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  background-color: var(--primary-color-opacity-high);
+  color: var(--secondary-color-opacity-full);
+  font-family: var(--primary-font);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  z-index: 10000;
+}
+
+.Input__default_class  {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  font-family: var(--primary-font);
+}
+
+.Input__default_class > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.Input_label__default_class {
+  font-weight: bold;
+}
+
+.Input_field__default_class {
+  flex: 0 0 65%;
+  margin-left: auto;
+
+  color: var(--secondary-color-opacity-full);
+  border: 1px solid currentColor;
+  background-color: transparent;
+
+  font-size: 1em;
+  text-align: center;
+}
+
+.Input_field__default_class::placeholder {
+  font-size: .8rem;
 }

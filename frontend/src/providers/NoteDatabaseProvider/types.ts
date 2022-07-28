@@ -4,7 +4,9 @@ export enum NoteDatabaseOperationType {
 	GetAll = 0,
 	GetOneByID,
 	DeleteAll,
+  RecoverAll,
 	DeleteOneByID,
+	RecoverOneByID,
 	Create,
 	Modify
 };
@@ -20,7 +22,9 @@ export interface NoteDatabaseOperation {
 	GetAll: () => void;
 	GetOneByID: (ID: number) => void;
 	DeleteAll: () => void;
+	RecoverAll: () => void;
 	DeleteOneByID: (ID: number) => void;
+	RecoverOneByID: (ID: number) => void;
 	Create: (fields: MutableNoteFields) => void;
 	Modify: (ID: number, fields: MutableNoteFields) => void;
 	CleanDeleted: () => void;

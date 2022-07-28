@@ -27,6 +27,18 @@ const StandAloneNoteDatabaseOperation = (props: StandAloneNoteDatabaseOperationP
 			const found: Note | null = notes.filter((note) => note.ID === ID)[0] || null;
 			if (found !== null) setFound(found);
 		},
+    RecoverOneByID: (ID: number) => {
+      setDeleted((prev) => {
+        let found: Note[] = [];
+		let modified = prev.filter((note) => {
+          if (note.ID !== ID) return note;
+          found.push(note);
+        });
+        if (found.length === 0) return prev;
+		operation.SetItem(localStorageKey, JSON.stringify([...notes, ...found]));
+        return modified;
+      });
+    },
 		Create: (fields: MutableNoteFields) => {
 			const created: Note = {
 				...fields,
@@ -39,6 +51,12 @@ const StandAloneNoteDatabaseOperation = (props: StandAloneNoteDatabaseOperationP
 		DeleteAll: () => {
 			setDeleted(notes);
 			operation.SetItem(localStorageKey, JSON.stringify([]));
+		},
+		RecoverAll: () => {
+			setDeleted((prev) => {
+				operation.SetItem(localStorageKey, JSON.stringify([...notes, ...prev]));
+				return [];
+			});
 		},
 		DeleteOneByID: (ID: number) => {
 			let found: Note[] = [];

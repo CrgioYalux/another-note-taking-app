@@ -1,0 +1,60 @@
+.NavMenu { position: relative; margin: 0; padding: 0; }
+
+.NavMenu_list {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  list-style: none;
+  width: max-content;
+  flex-direction: column;
+  gap: 5px;
+  display: none;
+}
+
+.NavMenu_element, .NavMenu_element > button {
+  width: 100%;
+}
+
+.NavMenu_element {
+  position: relative;
+}
+
+.NavMenu_element::before {
+  content: "go";
+  position: absolute;
+  top: 0;
+  left: calc(100% + 5px);
+  color: var(--secondary-color-opacity-full);
+  opacity: 0;
+  transition: opacity .4s;
+}
+
+.NavMenu_element:hover::before {
+  opacity: 1;
+}
+
+.NavMenu_element button {
+  border-radius: 9px;
+  cursor: pointer;
+  border: 0;
+  padding: .3em .4em;
+
+  background-color: var(--primary-color-opacity-high);
+  text-align: left;
+  color: var(--secondary-color-opacity-full);
+}
+
+.NavMenu_toggle_menu_bt {
+  color: var(--secondary-color-opacity-full);
+  background-color: var(--primary-color-opacity-full);
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+  padding: .2em .4em;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+#OpenNavMenu { display: none; }
+#OpenNavMenu:checked + .NavMenu_list { display: flex; }

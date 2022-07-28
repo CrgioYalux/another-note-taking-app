@@ -1,0 +1,34 @@
+.NoteGraphic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px 6px 3px 6px;
+  align-self: flex-start;
+
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 85%, 70% 100%, 0 100%);
+}
+
+.NoteGraphic::before {
+  content: "";
+  position: absolute;
+  width: 35%;
+  aspect-ratio: 1;
+  background-color: var(--secondary-color-opacity-full);
+  border-left: 3px solid var(--primary-color-opacity-full);
+  border-top: 3px solid var(--primary-color-opacity-full);
+  border-top-left-radius: 3px;
+  bottom: 0;
+  right: 0;
+}
+
+.NoteGraphic, .NoteGraphic.--unarchived {
+  background-color: var(--unarchived-color);
+}
+.NoteGraphic.--archived {
+  background-color: var(--archived-color);
+}
+.NoteGraphic.--deleted {
+  background-color: var(--deleted-color);
+}
+
+

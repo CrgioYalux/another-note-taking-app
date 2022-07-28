@@ -1,0 +1,40 @@
+.NoteOperation_bt:focus .NoteOperation_icon.--unarchived,
+.NoteOperation_bt:hover .NoteOperation_icon.--unarchived {
+  fill: var(--unarchived-color);
+}
+
+.NoteOperation_bt:focus .NoteOperation_icon.--archived,
+.NoteOperation_bt:hover .NoteOperation_icon.--archived {
+  fill: var(--archived-color);
+}
+
+.NoteOperation_bt:focus .NoteOperation_icon.--deleted,
+.NoteOperation_bt:hover .NoteOperation_icon.--deleted {
+  fill: var(--deleted-color);
+}
+
+.NoteOperations {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  border: 1px solid var(--secondary-color-opacity-full);
+  border-radius: 99px;
+  padding: 2px;
+}
+
+.NoteOperation_bt {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.NoteOperation_icon {
+  fill: var(--secondary-color-opacity-full);
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  transition: fill .25s;
+}

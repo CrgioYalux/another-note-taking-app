@@ -1,0 +1,47 @@
+.Note {
+  background-color: var(--primary-color-opacity-full);
+  color: var(--secondary-color-opacity-full);
+
+  padding: .2em .4em;
+  padding: .4em;
+  box-shadow: -3px 3px 0 var(--secondary-color-opacity-full);
+  border: 1px solid currentColor;
+
+  display: grid;
+  place-items: center;
+  column-gap: 5px;
+
+  width: 90%;
+  max-width: 350px;
+  grid-template-columns: 30px 1fr min-content;
+}
+
+.Note_content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  font-size: .8em;
+  overflow: hidden;
+  white-space: wrap;
+}
+
+.Note_content strong {
+  width: 100%;
+  font-size: 1em;
+  text-align: left;
+}
+
+.Note_content small {
+  font-size: .8em;
+  text-align: left;
+}
+
+.Note_content > small > span {
+  margin-left: 5px;
+}
+

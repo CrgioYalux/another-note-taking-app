@@ -3,7 +3,7 @@ import { NoteGraphic } from './NoteGraphic';
 import { NoteState } from './types';
 import { NoteOperations } from './NoteOperations';
 import { useNoteDatabase } from '../../providers/NoteDatabaseProvider';
-import type { Note as NoteType } from '../types';
+import type { Note as NoteType } from '../../types';
 import { useCreateEditMode } from '../../providers/CreateEditNoteProvider';
 import { CreateEditNoteMode } from '../../components/CreateEditNote';
 

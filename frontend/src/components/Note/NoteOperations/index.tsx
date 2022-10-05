@@ -4,8 +4,7 @@ import { DeleteIcon } from '../../DeleteIcon';
 import { ArchiveIcon } from '../../ArchiveIcon';
 import { UnarchiveIcon } from '../../UnarchiveIcon';
 import { RecoverIcon } from '../../RecoverIcon';
-import { useNoteDatabase } from '../../../providers/NoteDatabaseProvider';
-import { NoteState } from '../types.ts';
+import { NoteState } from '../types';
 
 interface NoteOperationsProps {
   isArchived: boolean;
